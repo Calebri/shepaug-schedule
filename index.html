@@ -54,7 +54,7 @@
             document.getElementById("p5").value = "Class5";
             document.getElementById("p6").value = "Class6";
             document.getElementById("p7").value = "Class7";
-            document.getElementById("hs").checked = true;
+            document.getElementById("hs").checked = false;
         }
 
         const colorData = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("colordata")))
@@ -96,11 +96,11 @@
                 c6: document.getElementById("c6").value,
                 c7: document.getElementById("c7").value
             };
-            window.location.href = "https://calebri.github.io/shepaug-schedule/?userdata="+encodeURIComponent(JSON.stringify(data))+"&colordata="+encodeURIComponent(JSON.stringify(colors));
+            window.location.href = "http://localhost:8000/?userdata="+encodeURIComponent(JSON.stringify(data))+"&colordata="+encodeURIComponent(JSON.stringify(colors));
         }
 
         function reset() {
-            window.location.href = "https://calebri.github.io/shepaug-schedule/"
+            window.location.href = "http://localhost:8000/"
         }
     </script>
 
