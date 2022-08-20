@@ -116,7 +116,7 @@ function printCalendar() {
             'calendarId': calendarId,
             'timeZone': userTimeZone,
             'singleEvents': true,
-            'timeMin': '2022-08-25T16:40:47.883Z',//(new Date()).toISOString(), //gathers only events not happened yet
+            'timeMin': (new Date()).toISOString(), //gathers only events not happened yet
             'maxResults': 10,
             'orderBy': 'startTime'
         });
