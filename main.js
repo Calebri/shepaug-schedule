@@ -84,10 +84,14 @@ if (userData != null) {
     "Class6",
     "Class7",
   ];
-}
+};
 
-function GetFirst(day) {
-  return (day*4%7)+1;
+function setText(id, part1, part2, spanid) {
+  const element = document.getElementById(id);
+  element.innerHTML = "<span>"+part1+"</span> | "+part2;
+  if (spanid != null) {
+    element.firstChild.id = "colorp" + spanid
+  }
 };
 
 function printCalendar() {
@@ -154,48 +158,66 @@ function printCalendar() {
           };
           console.log(named);
 
+
           if (args.length == 3 || args.length == 4) { //Regular+Adv
-            document.getElementById("class0").innerText = named[0] + " | " + times[0][0];
-            document.getElementById("class1").innerText = named[1] + " | " + times[0][1];
+            setText("class0", named[0], times[0][0], classes[day][0]);
+            setText("class1", named[1], times[0][1], classes[day][1]);
 
             if (args.length == 3) {
-              document.getElementById("class2").innerText = "Spartan Period | " + times[0][2];
+              setText("class2", "Spartan Period", times[0][2]);
             } else {
-              document.getElementById("class2").innerText = "Advisory | " + times[0][2];
+              setText("class2", "Advisory", times[0][2]);
             }
 
             if (hs) {
-              document.getElementById("class3").innerText = named[2] + " | " + times[0][3][1][0];
-              document.getElementById("class4").innerText = "Lunch | " + times[0][3][1][1];
+              setText("class3", named[2], times[0][3][1][0], classes[day][2]);
+              setText("class4", "Lunch", times[0][3][1][1]);
             } else{
-              document.getElementById("class3").innerText = "Lunch | " + times[0][3][0][0];
-              document.getElementById("class4").innerText = named[2] + " | " + times[0][3][0][1];
+              setText("class3", "Lunch", times[0][3][0][0]);
+              setText("class4", named[2], times[0][3][0][1], classes[day][2]);
             }
 
-            document.getElementById("class5").innerText = named[3] + " | " + times[0][4];
+            setText("class5", named[3], times[0][4], classes[day][3]);
           } else if (args.length == 6) { //ExtSP
-            document.getElementById("class0").innerText = named[0] + " | " + times[1][0];
-            document.getElementById("class1").innerText = named[1] + " | " + times[1][1];
+            setText("class0", named[0], times[1][0], classes[day][0]);
+            setText("class1", named[1], times[1][1], classes[day][1]);
 
             if (hs) {
-              document.getElementById("class2").innerText = named[2] + " | " + times[1][2][1][0];
-              document.getElementById("class3").innerText = "Lunch | " + times[1][2][1][1];
+              setText("class2", named[2], times[1][2][1][0], classes[day][2]);
+              setText("class3", "Lunch", times[1][2][1][1]);
             } else{
-              document.getElementById("class2").innerText = "Lunch | " + times[1][2][0][0];
-              document.getElementById("class3").innerText = named[2] + " | " + times[1][2][0][1];
+              setText("class2", "Lunch", times[1][2][0][0]);
+              setText("class3", named[2], times[1][2][0][1], classes[day][2]);
             }
 
-            document.getElementById("class4").innerText = "Spartan Period | " + times[1][3];
-            document.getElementById("class5").innerText = named[3] + " | " + times[1][4];
+            setText("class4", "Spartan Period", times[1][3]);
+            setText("class4", named[3], times[1][4], classes[day][3]);
           } else if (args.length == 5) { //EarlyRelease
-            document.getElementById("class0").innerText = named[0] + " | " + times[2][0];
-            document.getElementById("class1").innerText = named[1] + " | " + times[2][1];
-            document.getElementById("class2").innerText = "Spartan Period | " + times[2][2];
-            document.getElementById("class3").innerText = named[2] + " | " + times[2][3]
-            document.getElementById("class4").innerText = named[3] + " | " + times[2][4];
+            setText("class0", named[0], times[2][0], classes[day][0]);
+            setText("class1", named[1], times[2][1], classes[day][1]);
+            setText("class2", "Spartan Period", times[2][0]);
+            setText("class3", named[2], times[2][3], classes[day][2]);
+            setText("class4", named[3], times[2][4], classes[day][3]);
+          };
+
+          const ids = [
+            "colorp1",
+            "colorp2",
+            "colorp3",
+            "colorp4",
+            "colorp5",
+            "colorp6",
+            "colorp7",
+          ];
+
+          for (let index = 0; index < ids.length; index++) {
+            const element = ids[index]
+            const child = document.getElementById(element)
+            if (child != null && colorData != null) {
+              child.style = "color:"+colorData["c"+(index+1)]+";"
+            }
           }
         };
-
     }, function (reason) {
          console.log('Error: ' + reason.result.error.message);
     });

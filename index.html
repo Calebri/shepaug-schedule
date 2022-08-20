@@ -5,22 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule</title>
-    <link rel="icon" type="image/x-icon" href="./favicon.png">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a>Period 1 <input type="text" id="p1"></a>
-        <a>Period 2 <input type="text" id="p2"></a>
-        <a>Period 3 <input type="text" id="p3"></a>
-        <a>Period 4 <input type="text" id="p4"></a>
-        <a>Period 5 <input type="text" id="p5"></a>
-        <a>Period 6 <input type="text" id="p6"></a>
-        <a>Period 7 <input type="text" id="p7"></a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="text-decoration: none;">&times;</a>
+        <a>Period 1 <input type="text" id="p1"> <input type="color" id="c1"></a>
+        <a>Period 2 <input type="text" id="p2"> <input type="color" id="c2"></a>
+        <a>Period 3 <input type="text" id="p3"> <input type="color" id="c3"></a>
+        <a>Period 4 <input type="text" id="p4"> <input type="color" id="c4"></a>
+        <a>Period 5 <input type="text" id="p5"> <input type="color" id="c5"></a>
+        <a>Period 6 <input type="text" id="p6"> <input type="color" id="c6"></a>
+        <a>Period 7 <input type="text" id="p7"> <input type="color" id="c7"></a>
         <a>HS? <input type="checkbox" id="hs"></a>
-        <a><button type="button" onclick="reload();">Apply Settings</button></a>
+        <a><button type="button" onclick="reload();">Apply Settings</button> <button type="button" onclick="reset();">Reset</button></a>
         <a style="font-size:13px;">Perameters are saved to the URL. Bookmarking the page will save your settings.</a>
+        <br>
+        <br>
+        <a href="https://calebri.github.io/shepaug-schedule/basic/" class="link">Basic Calendar</a> <a href="https://github.com/Calebri/shepaug-schedule" class="link">GitHub</a>
     </div>
 
     <span onclick="openNav()"><h2 id="name" href="#" style="cursor: pointer;"></h2></span>
@@ -54,6 +57,17 @@
             document.getElementById("hs").checked = true;
         }
 
+        const colorData = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("colordata")))
+        if (colorData != null) {
+            document.getElementById("c1").value = colorData.c1
+            document.getElementById("c2").value = colorData.c2
+            document.getElementById("c3").value = colorData.c3
+            document.getElementById("c4").value = colorData.c4
+            document.getElementById("c5").value = colorData.c5
+            document.getElementById("c6").value = colorData.c6
+            document.getElementById("c7").value = colorData.c7
+        }
+
         function openNav() {
             document.getElementById("mySidenav").style.width = "500px";
         }
@@ -73,12 +87,25 @@
                 p7: document.getElementById("p7").value,
                 hs: document.getElementById("hs").checked
             };
-            window.location.href = "https://calebri.github.io/shepaug-schedule/?userdata="+encodeURIComponent(JSON.stringify(data));
+            const colors = {
+                c1: document.getElementById("c1").value,
+                c2: document.getElementById("c2").value,
+                c3: document.getElementById("c3").value,
+                c4: document.getElementById("c4").value,
+                c5: document.getElementById("c5").value,
+                c6: document.getElementById("c6").value,
+                c7: document.getElementById("c7").value
+            };
+            window.location.href = "http://localhost:8000/?userdata="+encodeURIComponent(JSON.stringify(data))+"&colordata="+encodeURIComponent(JSON.stringify(colors));
+        }
+
+        function reset() {
+            window.location.href = "http://localhost:8000/"
         }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2/moment.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="./main.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
