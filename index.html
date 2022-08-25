@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,12 +20,17 @@
         <a>Period 6 <input type="text" id="p6"> <input type="color" id="c6"></a>
         <a>Period 7 <input type="text" id="p7"> <input type="color" id="c7"></a>
         <a>HS? <input type="checkbox" id="hs"></a>
+        <a>Colored Header <input type="checkbox" id="colorheader"></a>
         <a><button type="button" onclick="reload();">Apply Settings</button> <button type="button" onclick="reset();">Reset</button></a>
         <a style="font-size:13px;">Perameters are saved to the URL. Bookmarking the page will save your settings.</a>
+        <a><button type="button" onclick="qrCode();">Generate QR Code</button></a>
+        <img src="" id="qrcode">
         <br>
         <br>
         <a href="https://calebri.github.io/shepaug-schedule/basic/" target="_blank" class="link">Basic Calendar</a>
         <a href="https://calebri.github.io/shepaug-schedule/text-editor/" target="_blank" class="link">Text Editor</a>
+        <a href="https://github.com/Calebri/shepaug-schedule/issues/new?labels=bug" target="_blank" class="link">Report a Bug</a>
+        <a href="https://github.com/Calebri/shepaug-schedule/issues/new?labels=enhancement" target="_blank" class="link">Request a Feature</a>
         <a href="https://github.com/Calebri/shepaug-schedule" target="_blank" class="link">GitHub</a>
         <br>
         <br>
@@ -40,74 +46,8 @@
     <p id="class4"></p>
     <p id="class5"></p>
 
-    <script>
-        //Set boxes to JSON data in URL
-        const userData = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("userdata")));
-        if (userData != null) {
-            document.getElementById("p1").value = userData.p1;
-            document.getElementById("p2").value = userData.p2;
-            document.getElementById("p3").value = userData.p3;
-            document.getElementById("p4").value = userData.p4;
-            document.getElementById("p5").value = userData.p5;
-            document.getElementById("p6").value = userData.p6;
-            document.getElementById("p7").value = userData.p7;
-            document.getElementById("hs").checked = userData.hs;
-        } else {
-            document.getElementById("p1").value = "Class1";
-            document.getElementById("p2").value = "Class2";
-            document.getElementById("p3").value = "Class3";
-            document.getElementById("p4").value = "Class4";
-            document.getElementById("p5").value = "Class5";
-            document.getElementById("p6").value = "Class6";
-            document.getElementById("p7").value = "Class7";
-            document.getElementById("hs").checked = false;
-        }
-
-        const colorData = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("colordata")))
-        if (colorData != null) {
-            document.getElementById("c1").value = colorData.c1
-            document.getElementById("c2").value = colorData.c2
-            document.getElementById("c3").value = colorData.c3
-            document.getElementById("c4").value = colorData.c4
-            document.getElementById("c5").value = colorData.c5
-            document.getElementById("c6").value = colorData.c6
-            document.getElementById("c7").value = colorData.c7
-        }
-
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "500px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-
-        function reload() {
-            const data = {
-                p1: document.getElementById("p1").value,
-                p2: document.getElementById("p2").value,
-                p3: document.getElementById("p3").value,
-                p4: document.getElementById("p4").value,
-                p5: document.getElementById("p5").value,
-                p6: document.getElementById("p6").value,
-                p7: document.getElementById("p7").value,
-                hs: document.getElementById("hs").checked
-            };
-            const colors = {
-                c1: document.getElementById("c1").value,
-                c2: document.getElementById("c2").value,
-                c3: document.getElementById("c3").value,
-                c4: document.getElementById("c4").value,
-                c5: document.getElementById("c5").value,
-                c6: document.getElementById("c6").value,
-                c7: document.getElementById("c7").value
-            };
-            window.location.href = "https://calebri.github.io/shepaug-schedule/?userdata="+encodeURIComponent(JSON.stringify(data))+"&colordata="+encodeURIComponent(JSON.stringify(colors));
-        }
-
-        function reset() {
-            window.location.href = "https://calebri.github.io/shepaug-schedule/"
-        }
+    <script src="./dataman.js">
+        
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2/moment.min.js"></script>
