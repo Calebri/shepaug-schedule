@@ -74,5 +74,5 @@ function reset() {
 }
 
 function qrCode() {
-    document.getElementById("qrcode").src = "https://api.qrserver.com/v1/create-qr-code/?data=" + window.location.href
+    document.getElementById("qrcode").src = "https://api.qrserver.com/v1/create-qr-code/?data=" + encodeURIComponent(window.location.href)
 }
