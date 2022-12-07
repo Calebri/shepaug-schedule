@@ -62,11 +62,20 @@ const times = [
     "1:14 - 2:25" //P4
   ],
   [ //EarlyRelease
-    "7:55 - 8:44", //P1
-    "8:48 - 9:35", //P2
-    "9:39 - 10:03", //SP
-    "10:07 - 10:54", //P3
-    "10:58 - 11:45" //P4
+    "7:55 - 8:38", //P1
+    "8:42 - 9:24", //P2
+    "9:28 - 9:52", //SP
+    "9:56 - 10:37", //P3
+    [
+      [
+        "10:41 - 11:01", //Lunch
+        "11:03 - 11:45" //P4
+      ], //MS
+      [
+        "10:41 - 11:23", //P4
+        "11:25 - 11:45" //Lunch
+      ] //HS
+    ] //L+P4
   ]
 ];
 
@@ -215,7 +224,14 @@ function printCalendar() {
         setText("class1", named[1], times[2][1], classes[day][1]);
         setText("class2", "Spartan Period", times[2][0]);
         setText("class3", named[2], times[2][3], classes[day][2]);
-        setText("class4", named[3], times[2][4], classes[day][3]);
+//         setText("class4", named[3], times[2][4], classes[day][3]);
+        if (hs) {
+          setText("class4", named[3], times[2][4][1][0], classes[day][3]);
+          setText("class5", "Lunch", times[2][4][1][1]);
+        } else {
+          setText("class4", "Lunch", times[2][4][0][0]);
+          setText("class5", named[3], times[2][4][0][1], classes[day][3]);
+        }
       };
 
       const ids = [
