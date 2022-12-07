@@ -222,7 +222,7 @@ function printCalendar() {
       } else if (args.length == 5) { //EarlyRelease
         setText("class0", named[0], times[2][0], classes[day][0]);
         setText("class1", named[1], times[2][1], classes[day][1]);
-        setText("class2", "Spartan Period", times[2][0]);
+        setText("class2", "Spartan Period", times[2][2]);
         setText("class3", named[2], times[2][3], classes[day][2]);
 //         setText("class4", named[3], times[2][4], classes[day][3]);
         if (hs) {
