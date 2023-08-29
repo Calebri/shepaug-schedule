@@ -186,11 +186,11 @@ function printCalendar() {
       console.log(named);
 
 
-      if (args.length == 3 || args.length == 4) { //Regular+Adv
+      if (args.length == 2 || args.length == 3) { //Regular+Adv
         setText("class0", named[0], times[0][0], classes[day][0]);
         setText("class1", named[1], times[0][1], classes[day][1]);
 
-        if (args.length == 3) {
+        if (args.length == 2) {
           setText("class2", "Spartan Period", times[0][2]);
         } else {
           setText("class2", "Advisory", times[0][2]);
@@ -205,7 +205,7 @@ function printCalendar() {
         }
 
         setText("class5", named[3], times[0][4], classes[day][3]);
-      } else if (args.length == 6) { //ExtSP
+      } else if (args.length == 5) { //ExtSP
         setText("class0", named[0], times[1][0], classes[day][0]);
         setText("class1", named[1], times[1][1], classes[day][1]);
 
@@ -219,7 +219,7 @@ function printCalendar() {
 
         setText("class4", "Spartan Period", times[1][3]);
         setText("class5", named[3], times[1][4], classes[day][3]);
-      } else if (args.length == 5) { //EarlyRelease
+      } else if (args.length == 4) { //EarlyRelease
         setText("class0", named[0], times[2][0], classes[day][0]);
         setText("class1", named[1], times[2][1], classes[day][1]);
         setText("class2", "Spartan Period", times[2][2]);
